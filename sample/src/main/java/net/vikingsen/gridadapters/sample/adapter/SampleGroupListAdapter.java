@@ -1,34 +1,35 @@
 package net.vikingsen.gridadapters.sample.adapter;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import net.vikingsen.gridadapters.GroupGridCursorAdapter;
+import net.vikingsen.gridadapters.GroupListAdapter;
 import net.vikingsen.gridadapters.sample.R;
 import net.vikingsen.gridadapters.sample.domain.Data;
 import net.vikingsen.gridadapters.sample.domain.distro.Distro;
 import net.vikingsen.gridadapters.sample.view.GroupHolder;
 
+import java.util.List;
+
 /**
  * Created by Jordan Hansen
  */
-public class SampleGroupGridCursorAdapter extends GroupGridCursorAdapter implements View.OnClickListener {
+public class SampleGroupListAdapter extends GroupListAdapter<Distro> implements View.OnClickListener {
 
     private final LayoutInflater inflater;
 
     private OnItemClickListener onItemClickListener;
 
-    public SampleGroupGridCursorAdapter(Context context) {
+    public SampleGroupListAdapter(Context context) {
         super(context, context.getResources().getIntArray(R.array.groups), context.getResources().getInteger(R.integer.items_in_first_group));
         this.inflater = LayoutInflater.from(context);
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent, int type, int itemsInGroup) {
+    public View newView(Context context, ViewGroup parent, int type, int itemsInGroup) {
         // first group
         if (type == 0) {
             View v = inflater.inflate(R.layout.group_first_item, parent, false);
@@ -53,18 +54,26 @@ public class SampleGroupGridCursorAdapter extends GroupGridCursorAdapter impleme
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor, int type, int groupPosition, int itemsInGroup) {
+    public void bindView(View view, Context context, List<Distro> groupItems, int type, int itemsInGroup, int firstPosition) {
         final GroupHolder holder = (GroupHolder) view.getTag();
-        if (cursor != null) {
-            Distro distro = new Distro(cursor);
-            ImageView imageView = holder.getImage(groupPosition);
-            imageView.setImageResource(Data.getImageId(distro.getName()));
+        int numItems = groupItems.size();
+        for (int i = 0; i < itemsInGroup; i++) {
+            ImageView imageView = holder.getImage(i);
+            if (i >= numItems) {
+                imageView.setVisibility(View.INVISIBLE);
+                continue;
+            }
             imageView.setVisibility(View.VISIBLE);
+            Distro distro = groupItems.get(i);
+            imageView.setImageResource(Data.getImageId(distro.getName()));
             imageView.setOnClickListener(this);
-            imageView.setTag(cursor.getPosition());
-        } else {
-            holder.getImage(groupPosition).setVisibility(View.INVISIBLE);
+            imageView.setTag(firstPosition + i);
         }
+    }
+
+    @Override
+    public long getGroupItemId(int groupPosition, Distro distro) {
+        return distro.getId();
     }
 
     @Override
@@ -78,7 +87,7 @@ public class SampleGroupGridCursorAdapter extends GroupGridCursorAdapter impleme
         this.onItemClickListener = onItemClickListener;
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(SampleGroupGridCursorAdapter adapter, View view, int position);
+    public static interface OnItemClickListener {
+        void onItemClick(SampleGroupListAdapter adapter, View view, int position);
     }
 }

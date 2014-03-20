@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
  * Created by Jordan Hansen
  *
  */
-public abstract class GroupGridCursorAdapter extends BaseAdapter {
+public abstract class GroupCursorAdapter extends BaseAdapter {
 
     private final Context context;
     private final int[] itemsPerGroup;
@@ -22,7 +22,7 @@ public abstract class GroupGridCursorAdapter extends BaseAdapter {
     private Cursor cursor;
     private boolean allowPartialGroups = false;
 
-    public GroupGridCursorAdapter(Context context, int[] itemsPerGroup, int itemsInFirstGroup) {
+    public GroupCursorAdapter(Context context, int[] itemsPerGroup, int itemsInFirstGroup) {
         this.context = context;
 
         this.itemsPerGroup = itemsPerGroup;

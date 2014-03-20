@@ -86,10 +86,10 @@ public class MainActivity extends ActionBarActivity {
                 fragment = StickySectionHeaderGridListFragment.newInstance(title);
                 break;
             case 4:
-                fragment = GroupGridCursorFragment.newInstance(title);
+                fragment = GroupCursorFragment.newInstance(title);
                 break;
             case 5:
-                fragment = GroupGridListFragment.newInstance(title);
+                fragment = GroupListFragment.newInstance(title);
                 break;
             default:
                 throw new IllegalStateException("Invalid Event Id: " + event.getId());

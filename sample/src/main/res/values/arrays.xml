@@ -111,8 +111,8 @@
         <item>Section Grid List</item>
         <item>Sticky Section Header Grid Cursor</item>
         <item>Sticky Section Header Grid List</item>
-        <item>Group Grid Cursor</item>
-        <item>Group Grid List</item>
+        <item>Group Cursor</item>
+        <item>Group List</item>
     </string-array>
     <integer-array name="groups">
         <item>2</item>

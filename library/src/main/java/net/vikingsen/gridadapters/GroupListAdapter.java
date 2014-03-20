@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Jordan Hansen
  *
  */
-public abstract class GroupGridListAdapter<T> extends BaseAdapter {
+public abstract class GroupListAdapter<T> extends BaseAdapter {
 
     private final Context context;
     private final int[] itemsPerGroup;
@@ -23,7 +23,7 @@ public abstract class GroupGridListAdapter<T> extends BaseAdapter {
     private List<T> data;
     private boolean allowPartialGroups = false;
 
-    public GroupGridListAdapter(Context context, int[] itemsPerGroup, int itemsInFirstGroup) {
+    public GroupListAdapter(Context context, int[] itemsPerGroup, int itemsInFirstGroup) {
         this.context = context;
 
         this.itemsPerGroup = itemsPerGroup;

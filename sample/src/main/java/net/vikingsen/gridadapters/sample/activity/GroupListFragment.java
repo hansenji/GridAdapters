@@ -1,6 +1,5 @@
 package net.vikingsen.gridadapters.sample.activity;
 
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -18,11 +17,13 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.Produce;
 
 import net.vikingsen.gridadapters.sample.R;
-import net.vikingsen.gridadapters.sample.adapter.SampleGroupGridCursorAdapter;
+import net.vikingsen.gridadapters.sample.adapter.SampleGroupListAdapter;
 import net.vikingsen.gridadapters.sample.domain.distro.Distro;
 import net.vikingsen.gridadapters.sample.event.AndroidBus;
 import net.vikingsen.gridadapters.sample.event.TitleEvent;
-import net.vikingsen.gridadapters.sample.loader.GroupGridCursorLoader;
+import net.vikingsen.gridadapters.sample.loader.GroupGridListLoader;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -30,7 +31,7 @@ import butterknife.InjectView;
 /**
  * Created by Jordan Hansen
  */
-public class GroupGridCursorFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>,SampleGroupGridCursorAdapter.OnItemClickListener {
+public class GroupListFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<Distro>>,SampleGroupListAdapter.OnItemClickListener {
 
     private static final String ARG_TITLE = "ARG_TITLE";
 
@@ -39,10 +40,10 @@ public class GroupGridCursorFragment extends Fragment implements LoaderManager.L
 
     private Bus bus;
     private String title;
-    private SampleGroupGridCursorAdapter adapter;
+    private SampleGroupListAdapter adapter;
 
     public static Fragment newInstance(String title) {
-        Fragment fragment = new GroupGridCursorFragment();
+        Fragment fragment = new GroupListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, title);
         fragment.setArguments(args);
@@ -124,33 +125,32 @@ public class GroupGridCursorFragment extends Fragment implements LoaderManager.L
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new GroupGridCursorLoader(getActivity());
+    public Loader<List<Distro>> onCreateLoader(int id, Bundle args) {
+        return new GroupGridListLoader(getActivity());
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(Loader<List<Distro>> loader, List<Distro> data) {
         if (adapter == null) {
-            adapter = new SampleGroupGridCursorAdapter(getActivity());
+            adapter = new SampleGroupListAdapter(getActivity());
             adapter.setOnItemClickListener(this);
         }
         if (listView.getAdapter() == null) {
             listView.setAdapter(adapter);
         }
-        adapter.changeCursor(data);
+        adapter.setData(data);
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public void onLoaderReset(Loader<List<Distro>> loader) {
         if (adapter != null) {
-            adapter.changeCursor(null);
+            adapter.setData(null);
         }
     }
 
     @Override
-    public void onItemClick(SampleGroupGridCursorAdapter adapter, View view, int position) {
-        Cursor cursor = adapter.getGroupItem(position);
-        Distro distro = new Distro(cursor);
+    public void onItemClick(SampleGroupListAdapter adapter, View view, int position) {
+        Distro distro = adapter.getGroupItem(position);
         Toast.makeText(getActivity(), distro.getName(), Toast.LENGTH_SHORT).show();
     }
 }
