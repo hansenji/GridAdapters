@@ -312,6 +312,11 @@ public abstract class SectionGridCursorAdapter extends BaseAdapter implements Vi
         return checkedIds.toArray(new Long[checkedIds.size()]);
     }
 
+    public void clearChecked() {
+        resetChecked();
+        notifyDataSetChanged();
+    }
+
     private static class Row {
         private Section section;
         private int firstCursorPosition;

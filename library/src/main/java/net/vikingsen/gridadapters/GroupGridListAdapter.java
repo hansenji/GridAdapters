@@ -14,7 +14,6 @@ import java.util.List;
 public abstract class GroupGridListAdapter<T> extends BaseAdapter {
 
     private final Context context;
-    private final boolean partialGroup;
     private final int[] itemsPerGroup;
     private final int[] sumItems;
     private final int totalItemsForGroups;
@@ -22,10 +21,10 @@ public abstract class GroupGridListAdapter<T> extends BaseAdapter {
     private final int itemsInFristGroup;
 
     private List<T> data;
+    private boolean allowPartialGroups = false;
 
-    public GroupGridListAdapter(Context context, boolean partialGroup, int[] itemsPerGroup, int itemsInFirstGroup) {
+    public GroupGridListAdapter(Context context, int[] itemsPerGroup, int itemsInFirstGroup) {
         this.context = context;
-        this.partialGroup = partialGroup;
 
         this.itemsPerGroup = itemsPerGroup;
         int n = itemsPerGroup.length;
@@ -49,7 +48,7 @@ public abstract class GroupGridListAdapter<T> extends BaseAdapter {
     @Override
     public int getCount() {
         int listCount = data != null ? data.size() - itemsInFristGroup : 0;
-        if (listCount <= 0 || (listCount < itemsInFristGroup && !partialGroup)) {
+        if (listCount <= 0 || (listCount < itemsInFristGroup && !allowPartialGroups)) {
             return 0;
         }
         int count = 0;
@@ -73,7 +72,7 @@ public abstract class GroupGridListAdapter<T> extends BaseAdapter {
                 break;
             }
         }
-        if (partialGroup && remainder > 0) {
+        if (allowPartialGroups && remainder > 0) {
             groups++;
         }
         return groups;
@@ -199,5 +198,18 @@ public abstract class GroupGridListAdapter<T> extends BaseAdapter {
         if (this.data != null) {
             notifyDataSetChanged();
         }
+    }
+
+    public boolean allowPartialGroups() {
+        return allowPartialGroups;
+    }
+
+    /**
+     * Default is false
+     * @param allowPartialGroups
+     */
+    public void setAllowPartialGroups(boolean allowPartialGroups) {
+        this.allowPartialGroups = allowPartialGroups;
+        notifyDataSetChanged();
     }
 }

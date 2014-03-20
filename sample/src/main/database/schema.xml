@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dbSchema xmlns='https://github.com/jeffdcamp/dbtools-gen'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='https://github.com/jeffdcamp/dbtools-gen dbschema.xsd'>
+    <database name="main">
+        <table name="distro">
+            <field name="_id" jdbcDataType="BIGINT" primaryKey="true" increment="true" notNull="true"/>
+            <field name="name" jdbcDataType="VARCHAR"/>
+        </table>
+    </database>
+</dbSchema>

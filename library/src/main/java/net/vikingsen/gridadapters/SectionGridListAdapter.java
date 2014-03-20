@@ -68,7 +68,7 @@ public abstract class SectionGridListAdapter<T> extends BaseAdapter implements V
             sections[i].firstRow = numRows;
             int count = sections[i].numItems;
             if (count > 0) {
-                numRows = (count - 1)/numColumns + 1;
+                numRows += (count - 1)/numColumns + 1;
             }
         }
         return numRows;
@@ -295,6 +295,11 @@ public abstract class SectionGridListAdapter<T> extends BaseAdapter implements V
 
     public Long[] getCheckedItemIds() {
         return checkedIds.toArray(new Long[checkedIds.size()]);
+    }
+
+    public void clearChecked() {
+        resetChecked();
+        notifyDataSetChanged();
     }
 
     private static class Row {

@@ -13,7 +13,6 @@ import android.widget.BaseAdapter;
 public abstract class GroupGridCursorAdapter extends BaseAdapter {
 
     private final Context context;
-    private final boolean partialGroup;
     private final int[] itemsPerGroup;
     private final int[] sumItems;
     private final int totalItemsForGroups;
@@ -21,10 +20,10 @@ public abstract class GroupGridCursorAdapter extends BaseAdapter {
     private final int itemsInFirstGroup;
 
     private Cursor cursor;
+    private boolean allowPartialGroups = false;
 
-    public GroupGridCursorAdapter(Context context, boolean partialGroup, int[] itemsPerGroup, int itemsInFirstGroup) {
+    public GroupGridCursorAdapter(Context context, int[] itemsPerGroup, int itemsInFirstGroup) {
         this.context = context;
-        this.partialGroup = partialGroup;
 
         this.itemsPerGroup = itemsPerGroup;
         int n = itemsPerGroup.length;
@@ -46,7 +45,7 @@ public abstract class GroupGridCursorAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         int cursorCount = cursor != null ? cursor.getCount() - itemsInFirstGroup : 0;
-        if (cursorCount <= 0 || (cursorCount < itemsInFirstGroup && !partialGroup)) {
+        if (cursorCount <= 0 || (cursorCount < itemsInFirstGroup && !allowPartialGroups)) {
             return 0;
         }
         int count = 0;
@@ -70,7 +69,7 @@ public abstract class GroupGridCursorAdapter extends BaseAdapter {
                 break;
             }
         }
-        if (partialGroup && remainder > 0) {
+        if (allowPartialGroups && remainder > 0) {
             groups++;
         }
         return groups;
@@ -225,6 +224,19 @@ public abstract class GroupGridCursorAdapter extends BaseAdapter {
         if (oldCursor != null) {
             oldCursor.close();
         }
+    }
+
+    public boolean allowPartialGroups() {
+        return allowPartialGroups;
+    }
+
+    /**
+     * Default is false
+     * @param allowPartialGroups
+     */
+    public void setAllowPartialGroups(boolean allowPartialGroups) {
+        this.allowPartialGroups = allowPartialGroups;
+        notifyDataSetChanged();
     }
 
 

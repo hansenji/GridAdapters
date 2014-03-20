@@ -5,6 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        classpath 'org.dbtools:dbtools-gen:1.4.11'
         classpath 'com.android.tools.build:gradle:0.9.+'
     }
 }

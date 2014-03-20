@@ -4,5 +4,6 @@
     <string name="app_name">GridAdapters</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="menu_partial_group">Allow Partial Groups</string>
 
 </resources>

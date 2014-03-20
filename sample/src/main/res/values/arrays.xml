@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="images">
+        <item>@drawable/amlug</item>
+        <item>@drawable/archlinux</item>
+        <item>@drawable/asplinux</item>
+        <item>@drawable/bearops</item>
+        <item>@drawable/beatrix</item>
+        <item>@drawable/biglinux</item>
+        <item>@drawable/blag</item>
+        <item>@drawable/centos</item>
+        <item>@drawable/chineselinuxextension</item>
+        <item>@drawable/corellinux</item>
+        <item>@drawable/debian</item>
+        <item>@drawable/delilinux</item>
+        <item>@drawable/engarde</item>
+        <item>@drawable/evilentity</item>
+        <item>@drawable/fedora</item>
+        <item>@drawable/foresight</item>
+        <item>@drawable/freeduc</item>
+        <item>@drawable/frugalware</item>
+        <item>@drawable/geekbox</item>
+        <item>@drawable/gentoolinux</item>
+        <item>@drawable/haydarlinux</item>
+        <item>@drawable/hiweed</item>
+        <item>@drawable/jamdlinux</item>
+        <item>@drawable/julex</item>
+        <item>@drawable/kalango</item>
+        <item>@drawable/kalilinux</item>
+        <item>@drawable/knoppixstd</item>
+        <item>@drawable/linspire</item>
+        <item>@drawable/lpg</item>
+        <item>@drawable/lunar</item>
+        <item>@drawable/lycoris</item>
+        <item>@drawable/mandrakelinux</item>
+        <item>@drawable/mepis</item>
+        <item>@drawable/minikazit</item>
+        <item>@drawable/mint</item>
+        <item>@drawable/monowall</item>
+        <item>@drawable/pclinuxos</item>
+        <item>@drawable/pld</item>
+        <item>@drawable/progeny</item>
+        <item>@drawable/redhat</item>
+        <item>@drawable/sabayon</item>
+        <item>@drawable/slackintosh</item>
+        <item>@drawable/slackwarelinux</item>
+        <item>@drawable/slax</item>
+        <item>@drawable/suse</item>
+        <item>@drawable/turbolinux</item>
+        <item>@drawable/ubuntu</item>
+        <item>@drawable/ututo</item>
+        <item>@drawable/vinelinux</item>
+        <item>@drawable/yellowdoglinux</item>
+        <item>@drawable/yoper</item>
+    </array>
+    <string-array name="distros">
+        <item>AMLUG</item>
+        <item>ARCHLINUX</item>
+        <item>ASPLINUX</item>
+        <item>BEAR OPS</item>
+        <item>BEATRIX</item>
+        <item>BIGLINUX</item>
+        <item>BLAG</item>
+        <item>CENTOS</item>
+        <item>CHINESE LINUX EXTENSION</item>
+        <item>COREL LINUX</item>
+        <item>DEBIAN</item>
+        <item>DELI LINUX</item>
+        <item>ENGARDE</item>
+        <item>EVILENTITY</item>
+        <item>FEDORA</item>
+        <item>FORESIGHT</item>
+        <item>FREEDUC</item>
+        <item>FRUGALWARE</item>
+        <item>GEEKBOX</item>
+        <item>GENTOO LINUX</item>
+        <item>HAYDAR LINUX</item>
+        <item>HIWEEK</item>
+        <item>JAMD LINUX</item>
+        <item>JULEX</item>
+        <item>KALANGO</item>
+        <item>KALI LINUX</item>
+        <item>KNOPPIX STD</item>
+        <item>LINSPIRE</item>
+        <item>LPG</item>
+        <item>LUNAR</item>
+        <item>LYCORIS</item>
+        <item>MANDRAKELINUX</item>
+        <item>MEPIS</item>
+        <item>MINIKAZIT</item>
+        <item>MINT</item>
+        <item>MONOWALL</item>
+        <item>PCLINUXOS</item>
+        <item>PLD</item>
+        <item>PROGENY</item>
+        <item>REDHAT</item>
+        <item>SABAYON</item>
+        <item>SLACKINTOSH</item>
+        <item>SLACKWARE LINUX</item>
+        <item>SLAX</item>
+        <item>SUSE</item>
+        <item>TURBOLINUX</item>
+        <item>UBUNTU</item>
+        <item>UTUTO</item>
+        <item>VINE LINUX</item>
+        <item>YELLOW DOG LINUX</item>
+        <item>YOPER</item>
+    </string-array>
+    <string-array name="grid_types">
+        <item>Section Grid Cursor</item>
+        <item>Section Grid List</item>
+        <item>Sticky Section Header Grid Cursor</item>
+        <item>Sticky Section Header Grid List</item>
+        <item>Group Grid Cursor</item>
+        <item>Group Grid List</item>
+    </string-array>
+    <integer-array name="groups">
+        <item>2</item>
+        <item>3</item>
+    </integer-array>
+</resources>
