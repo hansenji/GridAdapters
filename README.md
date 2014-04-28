@@ -14,7 +14,7 @@ Note
 
 The sample app uses 
 * jakewharton's [ButterKnife](http://jakewharton.github.io/butterknife/) for view injection
-* Square's [ott](http://square.github.io/otto/) for event bus
+* Square's [otto](http://square.github.io/otto/) for event bus
 * jeffdcamp's [dbtools-android](https://github.com/jeffdcamp/dbtools-android) for database access
 
 Use of these libraries are not required to use the adapters. I just don't like doing things the long way.
