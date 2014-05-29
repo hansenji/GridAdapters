@@ -47,10 +47,11 @@ public abstract class GroupListAdapter<T> extends BaseAdapter {
 
     @Override
     public int getCount() {
-        int listCount = data != null ? data.size() - itemsInFristGroup : 0;
+        int listCount = data != null ? data.size(): 0;
         if (listCount <= 0 || (listCount < itemsInFristGroup && !allowPartialGroups)) {
             return 0;
         }
+        listCount -= itemsInFirstGroup;
         int count = 0;
         if (itemsInFristGroup > 0) {
             count++;
