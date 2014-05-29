@@ -44,10 +44,11 @@ public abstract class GroupCursorAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        int cursorCount = cursor != null ? cursor.getCount() - itemsInFirstGroup : 0;
+        int cursorCount = cursor != null ? cursor.getCount() : 0;
         if (cursorCount <= 0 || (cursorCount < itemsInFirstGroup && !allowPartialGroups)) {
             return 0;
         }
+        cursorCount -= itemsInFirstGroup;
         int count = 0;
         if (itemsInFirstGroup > 0) {
             count++;
