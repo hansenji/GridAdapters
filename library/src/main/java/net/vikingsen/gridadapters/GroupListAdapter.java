@@ -18,7 +18,7 @@ public abstract class GroupListAdapter<T> extends BaseAdapter {
     private final int[] sumItems;
     private final int totalItemsForGroups;
     private final int numTypes;
-    private final int itemsInFristGroup;
+    private final int itemsInFirstGroup;
 
     private List<T> data;
     private boolean allowPartialGroups = false;
@@ -36,7 +36,7 @@ public abstract class GroupListAdapter<T> extends BaseAdapter {
         }
         this.totalItemsForGroups = s;
         this.numTypes = n;
-        this.itemsInFristGroup = itemsInFirstGroup;
+        this.itemsInFirstGroup = itemsInFirstGroup;
     }
 
     public abstract View newView(Context context, ViewGroup parent, int type, int itemsInGroup);
@@ -48,12 +48,12 @@ public abstract class GroupListAdapter<T> extends BaseAdapter {
     @Override
     public int getCount() {
         int listCount = data != null ? data.size(): 0;
-        if (listCount <= 0 || (listCount < itemsInFristGroup && !allowPartialGroups)) {
+        if (listCount <= 0 || (listCount < itemsInFirstGroup && !allowPartialGroups)) {
             return 0;
         }
         listCount -= itemsInFirstGroup;
         int count = 0;
-        if (itemsInFristGroup > 0) {
+        if (itemsInFirstGroup > 0) {
             count++;
         }
         return count + getNumberOfGroups(listCount);
@@ -83,19 +83,19 @@ public abstract class GroupListAdapter<T> extends BaseAdapter {
         if (row == 0) {
             return 0;
         }
-        int p = itemsInFristGroup > 0 ? row - 1 : row;
+        int p = itemsInFirstGroup > 0 ? row - 1 : row;
         int q = (p / numTypes) * totalItemsForGroups + sumItems[p % numTypes];
-        if (itemsInFristGroup > 0) {
-            q += itemsInFristGroup;
+        if (itemsInFirstGroup > 0) {
+            q += itemsInFirstGroup;
         }
         return q;
     }
 
     protected int getRowForListPosition(int position) {
-        if (position <= itemsInFristGroup) {
+        if (position <= itemsInFirstGroup) {
             return 0;
         }
-        int q = itemsInFristGroup > 0 ? position - itemsInFristGroup : position;
+        int q = itemsInFirstGroup > 0 ? position - itemsInFirstGroup : position;
         int j = q % totalItemsForGroups;
         int m;
         for (m = 1; m < numTypes; m++) {
@@ -105,7 +105,7 @@ public abstract class GroupListAdapter<T> extends BaseAdapter {
             }
         }
         int p = (q / totalItemsForGroups) * numTypes + m;
-        if (itemsInFristGroup > 0) {
+        if (itemsInFirstGroup > 0) {
             p++;
         }
         return p;
@@ -167,9 +167,9 @@ public abstract class GroupListAdapter<T> extends BaseAdapter {
         if (position == 0) {
             return 0;
         }
-        int i = itemsInFristGroup > 0 ? position - 1 : position;
+        int i = itemsInFirstGroup > 0 ? position - 1 : position;
         i %= numTypes;
-        if (itemsInFristGroup > 0) {
+        if (itemsInFirstGroup > 0) {
             i++;
         }
         return i;
@@ -178,17 +178,17 @@ public abstract class GroupListAdapter<T> extends BaseAdapter {
     @Override
     public int getViewTypeCount() {
         int count = itemsPerGroup.length;
-        if (itemsInFristGroup > 0) {
+        if (itemsInFirstGroup > 0) {
             count++;
         }
         return count;
     }
 
     private int getItemsInGroup(int type) {
-        if (type == 0 && itemsInFristGroup > 0) {
-            return itemsInFristGroup;
+        if (type == 0 && itemsInFirstGroup > 0) {
+            return itemsInFirstGroup;
         }
-        if (itemsInFristGroup > 0) {
+        if (itemsInFirstGroup > 0) {
             type--;
         }
         return itemsPerGroup[type];
